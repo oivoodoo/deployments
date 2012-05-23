@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "deployments"
   gem.require_paths = ["lib"]
   gem.version       = Deployments::VERSION
+
+  gem.add_dependency('curb')
+  gem.add_dependency('grit')
 end

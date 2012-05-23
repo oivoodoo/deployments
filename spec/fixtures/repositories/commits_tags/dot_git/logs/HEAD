@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 71dcbac57898e7ec88ab676d10ae416bf0ea6024 Alexander Korsak <alex.korsak@gmail.com> 1337759350 +0300	commit (initial): Added README file
+71dcbac57898e7ec88ab676d10ae416bf0ea6024 6318a50043e3f5a213cd0d37e5b6a53b1fe61e19 Alexander Korsak <alex.korsak@gmail.com> 1337759377 +0300	commit: Added deployments section to the README file
+6318a50043e3f5a213cd0d37e5b6a53b1fe61e19 36a6db1da19073578865cf0abf3ee36d0e46bbce Alexander Korsak <alex.korsak@gmail.com> 1337759398 +0300	commit: Added config.rb file
+36a6db1da19073578865cf0abf3ee36d0e46bbce b4b1532fabadea3358eff3765c5dba8c86d6b8e1 Alexander Korsak <alex.korsak@gmail.com> 1337759426 +0300	commit: Changed configuration for the app

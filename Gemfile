@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'curb'
+gem 'grit'
+
 group :development do
   gem 'debugger'
   gem 'ruby_gntp'
