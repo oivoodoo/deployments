@@ -13,8 +13,8 @@ module Deployments
       {
         :username => username,
         :env => env,
-        :tag => project.tag,
-        :commits => project.commits
+        :tag => tag,
+        :commits => commits
       }
     end
 
@@ -22,6 +22,14 @@ module Deployments
 
     def username
       Etc.getlogin
+    end
+
+    def commits
+      project.commits
+    end
+
+    def tag
+      project.tag
     end
   end
 end

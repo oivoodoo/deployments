@@ -9,6 +9,7 @@ module Deployments
     end
 
     def run
+      Curl::Easy.post(build.to_params)
     end
   end
 end

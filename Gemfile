@@ -4,6 +4,7 @@ gemspec
 
 gem 'curb'
 gem 'grit'
+gem 'simple-conf'
 
 group :development do
   gem 'debugger'
