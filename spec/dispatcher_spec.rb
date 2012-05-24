@@ -6,12 +6,33 @@ describe Dispatcher do
   let(:build) { Build.new("staging") }
   let(:dispatcher) { Dispatcher.new(build) }
 
-  context "post deployment data" do
-    before do
-      Curl::Easy.should_receive(:http_post).and_return(response)
+  before { build.should_receive(:to_params).and_return(fields) }
 
-      build.should_receive(:to_params).and_return(fields)
+  describe "request params" do
+    let(:response) { double('response', :response_code => 200) }
+    let(:fields) do
+      {
+        :username => "james.bond",
+        :params => ["fish", "cat"]
+      }
     end
+
+    it "should have right params in request" do
+      Curl::Easy.should_receive(:http_post) do |url, fields|
+        url.should == Deployments.options.server
+
+        fields.count.should == 3
+        fields[0].should == "username=james.bond"
+        fields[1].should == "params[]=fish"
+        fields[2].should == "params[]=cat"
+      end.and_return(response)
+
+      dispatcher.run
+    end
+  end
+
+  context "post deployment data" do
+    before { Curl::Easy.should_receive(:http_post).and_return(response) }
 
     context "with valid data" do
       let(:response) { double('response', :response_code => 200) }
@@ -48,12 +69,6 @@ describe Dispatcher do
       it "should unlucky send" do
         dispatcher.run.should be_false
       end
-    end
-  end
-
-  def curl_fields
-    fields.map do |key, value|
-      Curl::PostField.content(key, value)
     end
   end
 end

@@ -9,7 +9,7 @@ module Deployments
     end
 
     def run
-      c = Curl::Easy.http_post(Deployments.server, fields)
+      c = Curl::Easy.http_post(Deployments.options.server, fields)
 
       c.response_code.to_i == 200
     end
@@ -18,7 +18,17 @@ module Deployments
 
     def fields
       build.to_params.map do |key, value|
-        Curl::PostField.content(key, value.to_s)
+        if value.is_a?(Array)
+          field_as_array(key, value)
+        else
+          Curl::PostField.content(key, value.to_s)
+        end
+      end.flatten
+    end
+
+    def field_as_array(key, value)
+      value.map do |v|
+        Curl::PostField.content("#{key}[]", v.to_s)
       end
     end
   end

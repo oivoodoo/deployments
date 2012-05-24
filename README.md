@@ -28,7 +28,8 @@ At first you need to create in the config folder deployments.yml file with
 line:
 
 ```yaml
-  server: "your deployments server that will save build version"
+  options:
+    server: "your deployments server that will save build version"
 ```
 
 Add to your capistrano recipes the next following line, changing your_app_env
