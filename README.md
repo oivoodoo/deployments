@@ -1,6 +1,6 @@
 # Deployments
 
-TODO: Write a gem description
+Library for pushing details(commits, tag, username, env) about the current app
 
 ## Installation
 
@@ -18,7 +18,6 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
 
 ## Contributing
 
