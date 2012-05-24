@@ -18,6 +18,26 @@ Or install it yourself as:
 
 ## Usage
 
+At first you need to create in the config folder deployments.yml file with
+line:
+
+```yaml
+  server: "your deployments server that will save build version"
+```
+
+Add to your capistrano recipes the next following line, changing your_app_env
+to the deployment environment like 'staging' or 'development':
+
+```ruby
+  require 'deployments'
+
+  before 'deploy' do
+    sh <<-CMD
+      rake deployments:push app_env=your_app_env
+    CMD
+  end
+```
+
 
 ## Contributing
 
