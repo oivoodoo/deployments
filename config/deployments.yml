@@ -1,3 +1,5 @@
 options:
   server: "example.com"
+staging:
+  domain: "staging.example.com"
 

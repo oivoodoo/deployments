@@ -14,7 +14,8 @@ module Deployments
         :username => username,
         :env => env,
         :tag => tag,
-        :commits => commits
+        :commits => commits,
+        :domain => domain
       }
     end
 
@@ -30,6 +31,10 @@ module Deployments
 
     def tag
       project.tag
+    end
+
+    def domain
+      Deployments.send(env.to_sym).domain
     end
   end
 end

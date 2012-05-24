@@ -36,17 +36,7 @@ describe Dispatcher do
 
     context "with valid data" do
       let(:response) { double('response', :response_code => 200) }
-      let(:fields) do
-        {
-          :username => "john.smith",
-          :env => "staging",
-          :tag => "0.0.1",
-          :commits => [
-            "Added deployments section to the README file",
-            "Added README file"
-          ]
-        }
-      end
+      let(:fields) { { } }
 
       it "should successfully send" do
         dispatcher.run.should be_true

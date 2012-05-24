@@ -12,8 +12,13 @@ describe Build do
     end
 
     it "should return env" do
-      build.should_receive(:env).and_return("staging")
+      build.should_receive(:env).twice.and_return("staging")
       build.to_params[:env].should == "staging"
+    end
+
+    it "should return domain by env" do
+      build.should_receive(:domain).and_return("staging.example.com")
+      build.to_params[:domain].should == "staging.example.com"
     end
 
     context "in the current git project" do

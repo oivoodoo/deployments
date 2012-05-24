@@ -25,11 +25,15 @@ If you are using Rails 2 version you should add load method to your Rakefile:
 ```
 
 At first you need to create in the config folder deployments.yml file with
-line:
+receiver server url and domains of different envs of your application:
 
 ```yaml
   options:
     server: "your deployments server that will save build version"
+  development:
+    domain: "development.example.com"
+  staging:
+    domain: "staging.example.com"
 ```
 
 Add to your capistrano recipes the next following line, changing your_app_env
