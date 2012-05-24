@@ -18,6 +18,12 @@ Or install it yourself as:
 
 ## Usage
 
+If you are using Rails 2 version you should add load method to your Rakefile:
+
+```ruby
+  load "#{Gem.searcher.find('deployments').full_gem_path}/lib/tasks/deployments.rake"
+```
+
 At first you need to create in the config folder deployments.yml file with
 line:
 
