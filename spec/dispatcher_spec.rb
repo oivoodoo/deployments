@@ -8,21 +8,17 @@ describe Dispatcher do
 
   context "post deployment data" do
     before do
-      Curl::Easy.should_receive(:post).with(*fields).and_return(response)
+      Curl::Easy.should_receive(:http_post).and_return(response)
 
-      build.should_receive(:commits).and_return [
-        "Added deployments section to the README file",
-        "Added README file"
-      ]
-      build.should_receive(:tag).and_return("0.0.1")
+      build.should_receive(:to_params).and_return(fields)
     end
 
     context "with valid data" do
       let(:response) { double('response', :response_code => 200) }
       let(:fields) do
         {
-          :env => "staging",
           :username => "john.smith",
+          :env => "staging",
           :tag => "0.0.1",
           :commits => [
             "Added deployments section to the README file",
@@ -37,12 +33,18 @@ describe Dispatcher do
     end
 
     context "with invalid data" do
-      let(:fields) { "invalid param" }
+      let(:fields) { { :key => "invalid value" } }
       let(:response) { double('response', :response_code => 500) }
 
       it "should unlucky send" do
         dispatcher.run.should be_false
       end
+    end
+  end
+
+  def curl_fields
+    fields.map do |key, value|
+      Curl::PostField.content(key, value)
     end
   end
 end

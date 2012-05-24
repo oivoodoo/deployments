@@ -9,7 +9,17 @@ module Deployments
     end
 
     def run
-      Curl::Easy.post(build.to_params)
+      c = Curl::Easy.http_post(Deployments.server, fields)
+
+      c.response_code.to_i == 200
+    end
+
+    private
+
+    def fields
+      build.to_params.map do |key, value|
+        Curl::PostField.content(key, value)
+      end
     end
   end
 end
