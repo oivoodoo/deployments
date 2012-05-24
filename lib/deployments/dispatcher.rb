@@ -18,7 +18,7 @@ module Deployments
 
     def fields
       build.to_params.map do |key, value|
-        Curl::PostField.content(key, value)
+        Curl::PostField.content(key, value.to_s)
       end
     end
   end

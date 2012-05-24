@@ -7,7 +7,7 @@ namespace :deployments do
 
   desc "Push deployments details to the server"
   task :push do
-    build = Build.new(ENV['deployment_env'])
+    build = Deployments::Build.new(ENV['app_env'])
     dispatcher = Deployments::Dispatcher.new(build)
     dispatcher.run
   end

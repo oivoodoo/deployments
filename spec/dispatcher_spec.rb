@@ -40,6 +40,15 @@ describe Dispatcher do
         dispatcher.run.should be_false
       end
     end
+
+    context "with invalid data" do
+      let(:fields) { { :key => nil } }
+      let(:response) { double('response', :response_code => 500) }
+
+      it "should unlucky send" do
+        dispatcher.run.should be_false
+      end
+    end
   end
 
   def curl_fields
