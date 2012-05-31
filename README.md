@@ -49,6 +49,16 @@ to the deployment environment like 'staging' or 'development':
   end
 ```
 
+Request params:
+```ruby
+  {
+    :author => "author",
+    :commits => ["commits", "between", "tags"],
+    :env => "staging",
+    :version => "1.0.1",
+    :domain => "staging.example.com"
+  }
+```
 
 ## Contributing
 
