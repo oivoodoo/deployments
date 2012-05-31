@@ -7,7 +7,6 @@ gem 'grit'
 gem 'simple-conf'
 
 group :development do
-  gem 'debugger'
   gem 'ruby_gntp'
   gem 'guard'
   gem 'guard-rspec'
