@@ -8,7 +8,7 @@ describe Build do
   describe "interface for getting build information as json params" do
     it "should return deployer name information" do
       Etc.should_receive(:getlogin).and_return("john.smith")
-      build.to_params[:username].should == "john.smith"
+      build.to_params[:author].should == "john.smith"
     end
 
     it "should return env" do
@@ -33,7 +33,7 @@ describe Build do
       end
 
       it "should return current tag of the git project" do
-        build.to_params[:tag].should == "0.0.1"
+        build.to_params[:version].should == "0.0.1"
       end
 
       it "should return commits of the git project between the latests tags" do

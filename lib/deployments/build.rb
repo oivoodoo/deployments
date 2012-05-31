@@ -11,9 +11,9 @@ module Deployments
 
     def to_params
       {
-        :username => username,
+        :author => username,
         :env => env,
-        :tag => tag,
+        :version  => tag,
         :commits => commits,
         :domain => domain
       }
