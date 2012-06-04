@@ -6,19 +6,25 @@ describe Build do
   let(:build) { Build.new("staging") }
 
   describe "interface for getting build information as json params" do
+    let(:params) { build.to_params[:deployment] }
+
     it "should return deployer name information" do
       Etc.should_receive(:getlogin).and_return("john.smith")
-      build.to_params[:author].should == "john.smith"
+      params[:author].should == "john.smith"
     end
 
     it "should return env" do
-      build.should_receive(:env).twice.and_return("staging")
-      build.to_params[:env].should == "staging"
+      build.should_receive(:env).exactly(3).and_return("staging")
+      params[:env].should == "staging"
     end
 
     it "should return domain by env" do
       build.should_receive(:domain).and_return("staging.example.com")
-      build.to_params[:domain].should == "staging.example.com"
+      params[:domain].should == "staging.example.com"
+    end
+
+    it "should return api key dedicated to the env" do
+      build.to_params[:api_key].should == 'api key'
     end
 
     context "in the current git project" do
@@ -33,11 +39,11 @@ describe Build do
       end
 
       it "should return current tag of the git project" do
-        build.to_params[:version].should == "0.0.1"
+        params[:version].should == "0.0.1"
       end
 
       it "should return commits of the git project between the latests tags" do
-        build.to_params[:commits].should == [
+        params[:commits].should == [
           "Added deployments section to the README file",
           "Added README file"
         ]

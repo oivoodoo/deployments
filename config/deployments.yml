@@ -2,4 +2,5 @@ options:
   server: "example.com"
 staging:
   domain: "staging.example.com"
+  api_key: "api key"
 

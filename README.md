@@ -32,8 +32,10 @@ receiver server url and domains of different envs of your application:
     server: "your deployments server that will save build version"
   development:
     domain: "development.example.com"
+    api_key: "development api key"
   staging:
     domain: "staging.example.com"
+    api_key: "staging api key"
 ```
 
 Add to your capistrano recipes the next following line, changing your_app_env
@@ -52,11 +54,14 @@ to the deployment environment like 'staging' or 'development':
 Request params:
 ```ruby
   {
-    :author => "author",
-    :commits => ["commits", "between", "tags"],
-    :env => "staging",
-    :version => "1.0.1",
-    :domain => "staging.example.com"
+    {
+      :author => "author",
+      :commits => ["commits", "between", "tags"],
+      :env => "staging",
+      :version => "1.0.1",
+      :domain => "staging.example.com"
+    },
+    :api_key => "account api key"
   }
 ```
 

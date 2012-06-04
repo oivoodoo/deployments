@@ -11,11 +11,14 @@ module Deployments
 
     def to_params
       {
-        :author => username,
-        :env => env,
-        :version  => tag,
-        :commits => commits,
-        :domain => domain
+        :deployment => {
+          :author => username,
+          :env => env,
+          :version  => tag,
+          :commits => commits,
+          :domain => domain
+        },
+        :api_key => api_key
       }
     end
 
@@ -34,7 +37,15 @@ module Deployments
     end
 
     def domain
-      Deployments.send(env.to_sym).domain
+      settings.domain
+    end
+
+    def api_key
+      settings.api_key
+    end
+
+    def settings
+      Deployments.send(env.to_sym)
     end
   end
 end
