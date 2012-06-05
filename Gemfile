@@ -5,6 +5,7 @@ gemspec
 gem 'curb'
 gem 'grit'
 gem 'simple-conf'
+gem 'capistrano'
 
 group :development do
   gem 'ruby_gntp'

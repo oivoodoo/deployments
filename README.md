@@ -65,6 +65,14 @@ Request params:
   }
 ```
 
+Also you can use capistrano recipes of the gem, you need to add:
+```ruby
+  require 'deployments/recipes'
+```
+
+It will add capistrano hook "after 'deploy'" for pushing deployment details to
+the server after deploy.
+
 ## Contributing
 
 1. Fork it

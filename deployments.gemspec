@@ -18,4 +18,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency('curb')
   gem.add_dependency('grit')
   gem.add_dependency('simple-conf')
+  gem.add_dependency('capistrano')
 end
