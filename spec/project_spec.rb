@@ -10,6 +10,20 @@ describe Project do
     Grit::Repo.should_receive(:new).and_return(@repo)
   end
 
+  context "with one commit" do
+    let(:project_path) { './spec/fixtures/repositories/one_commit/dot_git' }
+
+    it "should be possible to get only commits" do
+      project.commits.should == [
+        "Added README file"
+      ]
+    end
+
+    it "should retrieve empty tag" do
+      project.tag.should be_nil
+    end
+  end
+
   context "with only commits" do
     let(:project_path) { './spec/fixtures/repositories/commits/dot_git' }
 
@@ -47,6 +61,20 @@ describe Project do
       project.commits.should == [
         "Added config.rb file",
         "Changed configuration for the app"
+      ]
+    end
+
+    it "should retrieve the latest tag" do
+      project.tag.should == "0.0.2"
+    end
+  end
+
+  context "with one commit between tags" do
+    let(:project_path) { './spec/fixtures/repositories/one_commit_tags/dot_git' }
+
+    it "should be possible to get commits between tags" do
+      project.commits.should == [
+        "Added config.rb file"
       ]
     end
 

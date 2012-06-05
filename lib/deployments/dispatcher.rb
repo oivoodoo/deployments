@@ -18,12 +18,24 @@ module Deployments
 
     def fields
       build.to_params.map do |key, value|
-        if value.is_a?(Array)
-          field_as_array(key, value)
-        else
-          Curl::PostField.content(key, value.to_s)
-        end
+        build_field(key, value)
       end.flatten
+    end
+
+    def build_field(key, value)
+      if value.is_a?(Array)
+        field_as_array(key, value)
+      elsif value.is_a?(Hash)
+        field_as_hash(key, value)
+      else
+        Curl::PostField.content(key, value.to_s)
+      end
+    end
+
+    def field_as_hash(key, value)
+      value.map do |k, v|
+        build_field("#{key}[#{k}]", v)
+      end
     end
 
     def field_as_array(key, value)

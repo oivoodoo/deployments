@@ -10,6 +10,7 @@ group :development do
   gem 'ruby_gntp'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'debugger'
 end
 
 group :test do

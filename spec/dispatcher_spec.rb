@@ -13,7 +13,12 @@ describe Dispatcher do
     let(:fields) do
       {
         :username => "james.bond",
-        :params => ["fish", "cat"]
+        :params => ["fish", "cat"],
+        :settings => {
+          :url => "example.com",
+          :key => "private",
+          :values => [1, 2]
+        }
       }
     end
 
@@ -21,11 +26,17 @@ describe Dispatcher do
       Curl::Easy.should_receive(:http_post) do |url, fields|
         url.should == Deployments.options.server
 
-        fields.count.should == 3
-        fields[0].should == "username=james.bond"
-        fields[1].should == "params[]=fish"
-        fields[2].should == "params[]=cat"
-      end.and_return(response)
+        fields.count.should == 7
+        fields[0].to_s.should == "username=james.bond"
+        fields[1].to_s.should == "params%5B%5D=fish"
+        fields[2].to_s.should == "params%5B%5D=cat"
+        fields[3].to_s.should == "settings%5Burl%5D=example.com"
+        fields[4].to_s.should == "settings%5Bkey%5D=private"
+        fields[5].to_s.should == "settings%5Bvalues%5D%5B%5D=1"
+        fields[6].to_s.should == "settings%5Bvalues%5D%5B%5D=2"
+
+        response
+      end
 
       dispatcher.run
     end
