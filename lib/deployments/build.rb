@@ -15,7 +15,7 @@ module Deployments
           :author => username,
           :env => env,
           :version  => tag,
-          :commits => commits,
+          :commit_attributes => commits,
           :domain => domain
         },
         :api_key => api_key

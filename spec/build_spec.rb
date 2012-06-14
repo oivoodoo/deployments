@@ -43,7 +43,7 @@ describe Build do
       end
 
       it "should return commits of the git project between the latests tags" do
-        params[:commits].should == [
+        params[:commit_attributes].should == [
           {
             "sha" => "dc7671f8a112706b6ee2404bae958fb8079dbda0",
             "message" => "Added deployments section to the README file"

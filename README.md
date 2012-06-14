@@ -56,7 +56,7 @@ Request params:
   {
     {
       :author => "author",
-      :commits => [
+      :commit_attributes => [
         {
           "sha" => "commit id",
           "message" => "Add readme file",
