@@ -44,8 +44,14 @@ describe Build do
 
       it "should return commits of the git project between the latests tags" do
         params[:commits].should == [
-          "Added deployments section to the README file",
-          "Added README file"
+          {
+            "sha" => "dc7671f8a112706b6ee2404bae958fb8079dbda0",
+            "message" => "Added deployments section to the README file"
+          },
+          {
+            "sha" => "45bedbc8cbb57792e00ad8dd9c9e7740ff3c2da5",
+            "message" => "Added README file"
+          },
         ]
       end
     end

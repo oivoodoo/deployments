@@ -13,7 +13,10 @@ module Deployments
       commits = between_tags(repo) if has_commits_between_tags?
 
       (commits || repo.commits).map do |commit|
-        commit.message
+        {
+          "sha" => commit.id,
+          "message" => commit.message
+        }
       end
     end
 

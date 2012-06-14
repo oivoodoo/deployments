@@ -14,9 +14,7 @@ describe Project do
     let(:project_path) { './spec/fixtures/repositories/one_commit/dot_git' }
 
     it "should be possible to get only commits" do
-      project.commits.should == [
-        "Added README file"
-      ]
+      project.commits.to_s.should include("Added README file")
     end
 
     it "should retrieve empty tag" do
@@ -28,10 +26,8 @@ describe Project do
     let(:project_path) { './spec/fixtures/repositories/commits/dot_git' }
 
     it "should be possible to get only commits" do
-      project.commits.should == [
-        "Added deployments section to the README file",
-        "Added README file"
-      ]
+      project.commits.to_s.should include("Added deployments section to the README file")
+      project.commits.to_s.should include("Added README file")
     end
 
     it "should retrieve empty tag" do
@@ -43,10 +39,8 @@ describe Project do
     let(:project_path) { './spec/fixtures/repositories/commits_tag/dot_git' }
 
     it "should be possible to get commits" do
-      project.commits.should == [
-        "Added deployments section to the README file",
-        "Added README file"
-      ]
+      project.commits.to_s.should include("Added deployments section to the README file")
+      project.commits.to_s.should include("Added README file")
     end
 
     it "should retrieve the latest tag" do
@@ -58,10 +52,8 @@ describe Project do
     let(:project_path) { './spec/fixtures/repositories/commits_tags/dot_git' }
 
     it "should be possible to get commits between tags" do
-      project.commits.should == [
-        "Added config.rb file",
-        "Changed configuration for the app"
-      ]
+      project.commits.to_s.should include("Added config.rb file")
+      project.commits.to_s.should include("Changed configuration for the app")
     end
 
     it "should retrieve the latest tag" do
@@ -73,9 +65,7 @@ describe Project do
     let(:project_path) { './spec/fixtures/repositories/one_commit_tags/dot_git' }
 
     it "should be possible to get commits between tags" do
-      project.commits.should == [
-        "Added config.rb file"
-      ]
+      project.commits.to_s.should include("Added config.rb file")
     end
 
     it "should retrieve the latest tag" do
