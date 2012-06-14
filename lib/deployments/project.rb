@@ -12,11 +12,9 @@ module Deployments
     def commits
       commits = between_tags(repo) if has_commits_between_tags?
 
-      (commits || repo.commits).map do |commit|
-        {
-          "sha" => commit.id,
-          "message" => commit.message
-        }
+      (commits || repo.commits).inject({}) do |hash, commit|
+        hash[commit.id] = commit.message
+        hash
       end
     end
 

@@ -56,16 +56,10 @@ Request params:
   {
     {
       :author => "author",
-      :commit_attributes => [
-        {
-          "sha" => "commit id",
-          "message" => "Add readme file",
-        },
-        {
-          "sha" => "commit id",
-          "message" => "Change readme file"
-        }
-      ],
+      :commit_attributes => {
+        "commit id" => "Add readme file",
+        "commit id" => "Change readme file"
+      },
       :env => "staging",
       :version => "1.0.1",
       :domain => "staging.example.com"
