@@ -40,7 +40,7 @@ module Deployments
 
     def field_as_array(key, value)
       value.map do |v|
-        Curl::PostField.content("#{key}[]", v.to_s)
+        build_field("#{key}[]", v)
       end
     end
   end

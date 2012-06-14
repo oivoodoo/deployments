@@ -17,7 +17,17 @@ describe Dispatcher do
         :settings => {
           :url => "example.com",
           :key => "private",
-          :values => [1, 2]
+          :values => [1, 2],
+          :hashes => [
+            {
+              :a => "A",
+              :b => "B"
+            },
+            {
+              :c => "C",
+              :d => "D"
+            }
+          ]
         }
       }
     end
@@ -26,7 +36,7 @@ describe Dispatcher do
       Curl::Easy.should_receive(:http_post) do |url, fields|
         url.should == Deployments.options.server
 
-        fields.count.should == 7
+        fields.count.should == 11
         fields[0].to_s.should == "username=james.bond"
         fields[1].to_s.should == "params%5B%5D=fish"
         fields[2].to_s.should == "params%5B%5D=cat"
@@ -34,6 +44,10 @@ describe Dispatcher do
         fields[4].to_s.should == "settings%5Bkey%5D=private"
         fields[5].to_s.should == "settings%5Bvalues%5D%5B%5D=1"
         fields[6].to_s.should == "settings%5Bvalues%5D%5B%5D=2"
+        fields[7].to_s.should == "settings%5Bhashes%5D%5B%5D%5Ba%5D=A"
+        fields[8].to_s.should == "settings%5Bhashes%5D%5B%5D%5Bb%5D=B"
+        fields[9].to_s.should == "settings%5Bhashes%5D%5B%5D%5Bc%5D=C"
+        fields[10].to_s.should == "settings%5Bhashes%5D%5B%5D%5Bd%5D=D"
 
         response
       end
