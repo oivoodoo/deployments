@@ -3,7 +3,7 @@ require 'versionomy'
 
 module Deployments
   class Project
-    attr_reader :path, :repo, :tags
+    attr_reader :path, :repo, :tag_names
 
     def initialize(path)
       @path = path
@@ -13,7 +13,7 @@ module Deployments
         Versionomy.parse(tag.name)
       end.sort
 
-      @tags = versions.map {|v| v.to_s}
+      @tag_names = versions.map {|v| v.to_s}
     end
 
     def commits
@@ -26,16 +26,22 @@ module Deployments
     end
 
     def tag
-      tags.last if has_tags?
+      tag_names.last if has_tags?
+    end
+
+    def previous_tag
+      tag_name = File.read(VERSION_FILE) if File.exists?(VERSION_FILE)
+      tag_name ||= tag_names[tag_names.size - 2]
+
+      find_repo_tag(tag_name)
     end
 
     private
 
     def between_tags(repo)
-      previous = find_repo_tag(tags[tags.size - 2])
-      last = find_repo_tag(tags.last)
+      last = find_repo_tag(tag_names.last)
 
-      repo.commits_between(previous.commit.id, last.commit.id)
+      repo.commits_between(previous_tag.commit.id, last.commit.id)
     end
 
     def find_repo_tag(name)
@@ -43,11 +49,11 @@ module Deployments
     end
 
     def has_commits_between_tags?
-      tags.size > 1
+      tag_names.size > 1
     end
 
     def has_tags?
-      not tags.empty?
+      not tag_names.empty?
     end
   end
 end

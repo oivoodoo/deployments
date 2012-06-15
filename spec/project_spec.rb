@@ -58,6 +58,23 @@ describe Project do
     end
   end
 
+  context "when we have version.txt file in public folder" do
+    let(:project_path) { './spec/fixtures/repositories/tags/dot_git' }
+
+    before do
+      File.open(VERSION_FILE, "w") do |file|
+        file.write "1.1.1"
+      end
+    end
+
+    after { File.delete(VERSION_FILE) }
+
+    it "should use version file for collecting commits" do
+      project.commits.to_s.should include("Change readme file")
+      project.commits.to_s.should include("Add empty space to readme file")
+    end
+  end
+
   context "with one commit between tags" do
     let(:project_path) { './spec/fixtures/repositories/one_commit_tags/dot_git' }
 

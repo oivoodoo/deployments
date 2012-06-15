@@ -10,5 +10,7 @@ require 'simple-conf'
 
 module Deployments
   include SimpleConf
+
+  VERSION_FILE = './public/version.txt'
 end
 

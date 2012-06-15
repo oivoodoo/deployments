@@ -12,12 +12,14 @@ describe PublicVersion do
   context "on generate version.txt" do
     before { public_version.generate }
 
+    after { File.delete(VERSION_FILE) }
+
     it "should create file in public folder" do
-      File.exists?('./public/version.txt').should be_true
+      File.exists?(VERSION_FILE).should be_true
     end
 
     it "should contain the latest tag of the repository" do
-      File.read('./public/version.txt').should == "1.15.1"
+      File.read(VERSION_FILE).should == "1.15.1"
     end
   end
 end

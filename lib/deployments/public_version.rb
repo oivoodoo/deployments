@@ -5,8 +5,8 @@ module Deployments
     end
 
     def generate
-      File.open('./public/version.txt', 'w') do |file|
-        file.write @project.tags.last
+      File.open(VERSION_FILE, 'w') do |file|
+        file.write @project.tag_names.last
       end
     end
   end
