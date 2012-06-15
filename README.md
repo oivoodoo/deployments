@@ -76,6 +76,13 @@ Also you can use capistrano recipes of the gem, you need to add:
 It will add capistrano hook "after 'deploy'" for pushing deployment details to
 the server after deploy.
 
+Now you can get request version.txt file from public folder, it will show the
+latest tag name of the project.
+
+```
+  http://your-site/version.txt
+```
+
 ## Contributing
 
 1. Fork it
