@@ -44,8 +44,8 @@ to the deployment environment like 'staging' or 'development':
 ```ruby
   require 'deployments'
 
-  before 'deploy' do
-    sh <<-CMD
+  after 'deploy' do
+    run <<-CMD
       rake deployments:push app_env=your_app_env
     CMD
   end
