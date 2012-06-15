@@ -72,5 +72,13 @@ describe Project do
       project.tag.should == "0.0.2"
     end
   end
+
+  context "with various tags" do
+    let(:project_path) { './spec/fixtures/repositories/tags/dot_git' }
+
+    it "should return the latest tag" do
+      project.tag.should == "1.15.1"
+    end
+  end
 end
 
