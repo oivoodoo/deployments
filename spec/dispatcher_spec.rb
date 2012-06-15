@@ -3,7 +3,8 @@ require 'spec_helper'
 include Deployments
 
 describe Dispatcher do
-  let(:build) { Build.new("staging") }
+  let(:project) { Project.new('./') }
+  let(:build) { Build.new("staging", project) }
   let(:dispatcher) { Dispatcher.new(build) }
 
   before { build.should_receive(:to_params).and_return(fields) }

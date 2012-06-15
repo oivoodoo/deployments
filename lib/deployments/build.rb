@@ -4,9 +4,9 @@ module Deployments
   class Build
     attr_reader :env, :project
 
-    def initialize(env)
+    def initialize(env, project)
       @env = env
-      @project = Project.new('./')
+      @project = project
     end
 
     def to_params

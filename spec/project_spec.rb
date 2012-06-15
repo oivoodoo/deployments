@@ -5,10 +5,7 @@ include Deployments
 describe Project do
   let(:project) { Project.new(project_path) }
 
-  before do
-    @repo = Grit::Repo.new(project_path, :is_bare => true)
-    Grit::Repo.should_receive(:new).and_return(@repo)
-  end
+  before { stub_repository }
 
   context "with one commit" do
     let(:project_path) { './spec/fixtures/repositories/one_commit/dot_git' }

@@ -7,10 +7,7 @@ describe PublicVersion do
   let(:project) { Project.new(project_path) }
   let(:public_version) { PublicVersion.new(project) }
 
-  before do
-    @repo = Grit::Repo.new(project_path, :is_bare => true)
-    Grit::Repo.should_receive(:new).and_return(@repo)
-  end
+  before { stub_repository }
 
   context "on generate version.txt" do
     before { public_version.generate }

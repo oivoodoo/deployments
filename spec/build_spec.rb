@@ -3,7 +3,11 @@ require 'spec_helper'
 include Deployments
 
 describe Build do
-  let(:build) { Build.new("staging") }
+  let(:project_path) { './spec/fixtures/repositories/commits_tag/dot_git' }
+  let(:project) { Project.new(project_path) }
+  let(:build) { Build.new("staging", project) }
+
+  before { stub_repository }
 
   describe "interface for getting build information as json params" do
     let(:params) { build.to_params[:deployment] }
@@ -28,16 +32,6 @@ describe Build do
     end
 
     context "in the current git project" do
-      let(:project_path) { './spec/fixtures/repositories/commits_tag/dot_git' }
-
-      before do
-        @repo = Grit::Repo.new(project_path, :is_bare => true)
-        Grit::Repo.should_receive(:new).and_return(@repo)
-
-        @project = Project.new(project_path)
-        Project.should_receive(:new).and_return(@project)
-      end
-
       it "should return current tag of the git project" do
         params[:version].should == "0.0.1"
       end
