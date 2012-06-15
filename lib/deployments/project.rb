@@ -30,7 +30,7 @@ module Deployments
     end
 
     def previous_tag
-      tag_name = File.read(VERSION_FILE) if File.exists?(VERSION_FILE)
+      tag_name = File.read(VERSION_FILE).strip if File.exists?(VERSION_FILE)
       tag_name ||= tag_names[tag_names.size - 2]
 
       find_repo_tag(tag_name)

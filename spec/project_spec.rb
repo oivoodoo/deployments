@@ -60,10 +60,11 @@ describe Project do
 
   context "when we have version.txt file in public folder" do
     let(:project_path) { './spec/fixtures/repositories/tags/dot_git' }
+    let(:tag_name) { "1.1.1" }
 
     before do
       File.open(VERSION_FILE, "w") do |file|
-        file.write "1.1.1"
+        file.write tag_name
       end
     end
 
@@ -72,6 +73,15 @@ describe Project do
     it "should use version file for collecting commits" do
       project.commits.to_s.should include("Change readme file")
       project.commits.to_s.should include("Add empty space to readme file")
+    end
+
+    context "with empty characters at the end of tag name" do
+      let(:tag_name) { "1.1.1\r\n" }
+
+      it "should use version file for collecting commits" do
+        project.commits.to_s.should include("Change readme file")
+        project.commits.to_s.should include("Add empty space to readme file")
+      end
     end
   end
 
