@@ -20,7 +20,10 @@ module Deployments
       commits = between_tags(repo) if has_commits_between_tags?
 
       (commits || repo.commits).inject({}) do |hash, commit|
-        hash[commit.id] = commit.message
+        hash[commit.id] = {
+          :message => commit.message,
+          :created_at => commit.date.to_s
+        }
         hash
       end
     end

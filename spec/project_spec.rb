@@ -14,6 +14,10 @@ describe Project do
       project.commits.to_s.should include("Added README file")
     end
 
+    it "should be possible to get creation date of commit" do
+      project.commits.to_s.should include("2012-06-05 11:05:43 +0300")
+    end
+
     it "should retrieve empty tag" do
       project.tag.should be_nil
     end
@@ -25,6 +29,11 @@ describe Project do
     it "should be possible to get only commits" do
       project.commits.to_s.should include("Added deployments section to the README file")
       project.commits.to_s.should include("Added README file")
+    end
+
+    it "should be possible to get creation dates of commits" do
+      project.commits.to_s.should include("2012-05-21 17:33:22 +0300")
+      project.commits.to_s.should include("2012-05-21 17:32:57 +0300")
     end
 
     it "should retrieve empty tag" do

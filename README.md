@@ -57,8 +57,14 @@ Request params:
     {
       :author => "author",
       :commit_attributes => {
-        "commit id" => "Add readme file",
-        "commit id" => "Change readme file"
+        "commit id" => {
+          "message" => "Add readme file",
+          "created_at" => "2012-05-23 10:38:46 +0300"
+        },
+        "commit id" => {
+          "message" => "Change readme file",
+          "created_at" => "2012-05-23 10:39:18 +0300"
+        }
       },
       :env => "staging",
       :version => "1.0.1",

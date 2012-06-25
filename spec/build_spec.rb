@@ -38,8 +38,14 @@ describe Build do
 
       it "should return commits of the git project between the latests tags" do
         hash = {}
-        hash["dc7671f8a112706b6ee2404bae958fb8079dbda0"] = "Added deployments section to the README file"
-        hash["45bedbc8cbb57792e00ad8dd9c9e7740ff3c2da5"] = "Added README file"
+        hash["dc7671f8a112706b6ee2404bae958fb8079dbda0"] = {
+          :message => "Added deployments section to the README file",
+          :created_at=> "2012-05-23 10:39:18 +0300"
+        }
+        hash["45bedbc8cbb57792e00ad8dd9c9e7740ff3c2da5"] = {
+          :message => "Added README file",
+          :created_at => "2012-05-23 10:38:46 +0300"
+        }
 
         params[:commit_attributes].should == hash
       end
