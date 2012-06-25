@@ -24,7 +24,7 @@ describe Build do
 
     it "should return domain by env" do
       build.should_receive(:domain).and_return("staging.example.com")
-      params[:domain].should == "staging.example.com"
+      params[:host_name].should == "staging.example.com"
     end
 
     it "should return api key dedicated to the env" do

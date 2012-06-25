@@ -62,7 +62,7 @@ Request params:
       },
       :env => "staging",
       :version => "1.0.1",
-      :domain => "staging.example.com"
+      :host_name => "staging.example.com"
     },
     :api_key => "account api key"
   }
