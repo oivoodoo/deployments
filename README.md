@@ -2,6 +2,8 @@
 
 Library for pushing details(commits, tag, username, env) about the current app
 
+[![Build Status](https://secure.travis-ci.org/oivoodoo/deployments.png?branch=master)](http://travis-ci.org/oivoodoo/deployments)
+
 ## Installation
 
 Add this line to your application's Gemfile:
